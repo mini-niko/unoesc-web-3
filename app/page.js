@@ -193,7 +193,6 @@ export default () => {
               <TableHead>Nome</TableHead>
               <TableHead className="w-min">Idade</TableHead>
               <TableHead>Endereço</TableHead>
-              <TableHead />
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -203,145 +202,155 @@ export default () => {
                   <TableCell>{client.id}</TableCell>
                   <TableCell>{client.name}</TableCell>
                   <TableCell>{client.age}</TableCell>
-                  <TableCell>{client.adress}</TableCell>
                   <TableCell>
-                    <TooltipProvider>
-                      <AlertDialog>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <AlertDialogTrigger asChild>
-                              <Button
-                                variant="outline"
-                                className="mr-2"
-                                onClick={() => {
-                                  setId(client.id);
-                                }}
-                              >
-                                <Trash className="w-4 h-4" />
-                              </Button>
-                            </AlertDialogTrigger>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Deletar</p>
-                          </TooltipContent>
-                        </Tooltip>
-                        <AlertDialogContent>
-                          <AlertDialogHeader>
-                            <AlertDialogTitle>
-                              Você tem certeza?
-                            </AlertDialogTitle>
-                            <AlertDialogDescription>
-                              Uma vez o cliente deletado, será impossível
-                              desfazer a ação.
-                            </AlertDialogDescription>
-                          </AlertDialogHeader>
-                          <AlertDialogFooter>
-                            <AlertDialogAction asChild>
-                              <Button variant="ghost" onClick={onDeleteSubmit}>
-                                Confirmar
-                              </Button>
-                            </AlertDialogAction>
-                            <AlertDialogCancel asChild>
-                              <Button>Cancelar</Button>
-                            </AlertDialogCancel>
-                          </AlertDialogFooter>
-                        </AlertDialogContent>
-                      </AlertDialog>
-                      <Dialog>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <DialogTrigger asChild>
-                              <Button
-                                variant="outline"
-                                onClick={() => {
-                                  setId(client.id);
-                                  setName(client.name);
-                                  setAge(client.age);
-                                  setAdress(client.adress);
-                                }}
-                              >
-                                <Pencil className="w-4 h-4" />
-                              </Button>
-                            </DialogTrigger>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Atualizar</p>
-                          </TooltipContent>
-                        </Tooltip>
-                        <DialogContent>
-                          <DialogHeader>
-                            <DialogTitle>Atualizar cliente</DialogTitle>
-                            <DialogDescription>
-                              Preencha os dados para atualizar o cliente.
-                            </DialogDescription>
-                          </DialogHeader>
+                    <div className="flex justify-between items-center">
+                      {client.adress}
+                      <div>
+                        <TooltipProvider>
+                          <AlertDialog>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <AlertDialogTrigger asChild>
+                                  <Button
+                                    variant="outline"
+                                    className="mr-2"
+                                    onClick={() => {
+                                      setId(client.id);
+                                    }}
+                                  >
+                                    <Trash className="w-4 h-4" />
+                                  </Button>
+                                </AlertDialogTrigger>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Deletar</p>
+                              </TooltipContent>
+                            </Tooltip>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>
+                                  Você tem certeza?
+                                </AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  Uma vez o cliente deletado, será impossível
+                                  desfazer a ação.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogAction asChild>
+                                  <Button
+                                    variant="ghost"
+                                    onClick={onDeleteSubmit}
+                                  >
+                                    Confirmar
+                                  </Button>
+                                </AlertDialogAction>
+                                <AlertDialogCancel asChild>
+                                  <Button>Cancelar</Button>
+                                </AlertDialogCancel>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
+                          <Dialog>
+                            <Tooltip>
+                              <TooltipTrigger asChild>
+                                <DialogTrigger asChild>
+                                  <Button
+                                    variant="outline"
+                                    onClick={() => {
+                                      setId(client.id);
+                                      setName(client.name);
+                                      setAge(client.age);
+                                      setAdress(client.adress);
+                                    }}
+                                  >
+                                    <Pencil className="w-4 h-4" />
+                                  </Button>
+                                </DialogTrigger>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                <p>Atualizar</p>
+                              </TooltipContent>
+                            </Tooltip>
+                            <DialogContent>
+                              <DialogHeader>
+                                <DialogTitle>Atualizar cliente</DialogTitle>
+                                <DialogDescription>
+                                  Preencha os dados para atualizar o cliente.
+                                </DialogDescription>
+                              </DialogHeader>
 
-                          <form className="space-y-6" onSubmit={onUpdateSubmit}>
-                            <div className="grid grid-cols-4 items-center text-right gap-4">
-                              <Label htmlFor="name" className="text-right">
-                                Id
-                              </Label>
-                              <Input
-                                disabled
-                                type="number"
-                                className="col-span-3"
-                                id="name"
-                                value={id}
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center text-right gap-4">
-                              <Label htmlFor="name" className="text-right">
-                                Nome
-                              </Label>
-                              <Input
-                                type="text"
-                                className="col-span-3"
-                                id="name"
-                                value={name}
-                                onChange={(e) => {
-                                  setName(e.target.value);
-                                }}
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center text-right gap-4">
-                              <Label htmlFor="age">Idade</Label>
-                              <Input
-                                type="number"
-                                className="col-span-3"
-                                id="age"
-                                value={age}
-                                onChange={(e) => {
-                                  setAge(e.target.value);
-                                }}
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center text-right gap-4">
-                              <Label htmlFor="adress">Endereço</Label>
-                              <Input
-                                type="text"
-                                className="col-span-3"
-                                id="age"
-                                value={adress}
-                                onChange={(e) => {
-                                  setAdress(e.target.value);
-                                }}
-                              />
-                            </div>
+                              <form
+                                className="space-y-6"
+                                onSubmit={onUpdateSubmit}
+                              >
+                                <div className="grid grid-cols-4 items-center text-right gap-4">
+                                  <Label htmlFor="name" className="text-right">
+                                    Id
+                                  </Label>
+                                  <Input
+                                    disabled
+                                    type="number"
+                                    className="col-span-3"
+                                    id="name"
+                                    value={id}
+                                  />
+                                </div>
+                                <div className="grid grid-cols-4 items-center text-right gap-4">
+                                  <Label htmlFor="name" className="text-right">
+                                    Nome
+                                  </Label>
+                                  <Input
+                                    type="text"
+                                    className="col-span-3"
+                                    id="name"
+                                    value={name}
+                                    onChange={(e) => {
+                                      setName(e.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="grid grid-cols-4 items-center text-right gap-4">
+                                  <Label htmlFor="age">Idade</Label>
+                                  <Input
+                                    type="number"
+                                    className="col-span-3"
+                                    id="age"
+                                    value={age}
+                                    onChange={(e) => {
+                                      setAge(e.target.value);
+                                    }}
+                                  />
+                                </div>
+                                <div className="grid grid-cols-4 items-center text-right gap-4">
+                                  <Label htmlFor="adress">Endereço</Label>
+                                  <Input
+                                    type="text"
+                                    className="col-span-3"
+                                    id="age"
+                                    value={adress}
+                                    onChange={(e) => {
+                                      setAdress(e.target.value);
+                                    }}
+                                  />
+                                </div>
 
-                            <DialogFooter>
-                              <DialogClose asChild>
-                                <Button type="button" variant="ghost">
-                                  Cancelar
-                                </Button>
-                              </DialogClose>
-                              <DialogClose asChild>
-                                <Button type="submit">Salvar</Button>
-                              </DialogClose>
-                            </DialogFooter>
-                          </form>
-                        </DialogContent>
-                      </Dialog>
-                    </TooltipProvider>
+                                <DialogFooter>
+                                  <DialogClose asChild>
+                                    <Button type="button" variant="ghost">
+                                      Cancelar
+                                    </Button>
+                                  </DialogClose>
+                                  <DialogClose asChild>
+                                    <Button type="submit">Salvar</Button>
+                                  </DialogClose>
+                                </DialogFooter>
+                              </form>
+                            </DialogContent>
+                          </Dialog>
+                        </TooltipProvider>
+                      </div>
+                    </div>
                   </TableCell>
                 </TableRow>
               );

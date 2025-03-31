@@ -1,6 +1,6 @@
 import database from "@/database";
 
-export async function GET(req) {
+export async function GET() {
   const body = (await database.query("SELECT * FROM clients;")).rows;
 
   return new Response(JSON.stringify(body), {
